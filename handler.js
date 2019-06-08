@@ -5,7 +5,11 @@ module.exports.hello = async event => {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: "hello function update"
+        message:
+          "hello function update" +
+          process.env.MY_API_KEY +
+          " " +
+          process.env.MY_FUNCTION_ENV_VAR
       },
       null,
       2

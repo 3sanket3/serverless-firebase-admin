@@ -21,9 +21,16 @@ provider:
   name: aws
   runtime: nodejs8.10
 
+  # you can overwrite defaults here
+  stage: dev
+  region: us-east-1
+  environment:
+    #     variable2: value2
+    MY_API_KEY: MY_ENVIRONMENT_API_KEY
   apiKeys:
     - myFirstKey
-
+    - ${self:provider.stage}-myFirstKey
+    - ${self:provider.environment.MY_API_KEY} # you can hide it in a serverless variable
   usagePlan:
     quota:
       limit: 5000
@@ -46,7 +53,7 @@ provider:
 #        Fn::Join:
 #          - ""
 #          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDe`loymentBucket"
+#            - "Ref" : "ServerlessDeloymentBucket"
 #            - "/*"
 
 # you can define service wide environment variables here
@@ -69,6 +76,9 @@ functions:
       - http:
           path: /
           method: get
+    environment:
+      #     variable2: value2
+      MY_FUNCTION_ENV_VAR: MY_FUNCTION_ENV_VAR
   helloOne:
     handler: handler.helloOne
     events:
