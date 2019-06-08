@@ -1,12 +1,14 @@
 "use strict";
 
+var getAdminApp = require("./admin");
+
 module.exports.helloAnotherFile = async event => {
   return {
     statusCode: 200,
     body: JSON.stringify(
       {
         message: "Hello from Another file",
-        input: event
+        appName: getAdminApp().name
       },
       null
     )

@@ -27,6 +27,7 @@ provider:
   environment:
     #     variable2: value2
     MY_API_KEY: MY_ENVIRONMENT_API_KEY
+    GOOGLE_APPLICATION_CREDENTIALS: serviceAccountKey.json
   apiKeys:
     - myFirstKey
     - ${self:provider.stage}-myFirstKey
@@ -79,6 +80,7 @@ functions:
     environment:
       #     variable2: value2
       MY_FUNCTION_ENV_VAR: MY_FUNCTION_ENV_VAR
+
   helloOne:
     handler: handler.helloOne
     events:

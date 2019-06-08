@@ -1,5 +1,6 @@
 "use strict";
 
+var getAdminApp = require("./admin");
 module.exports.hello = async event => {
   return {
     statusCode: 200,
@@ -9,7 +10,8 @@ module.exports.hello = async event => {
           "hello function update" +
           process.env.MY_API_KEY +
           " " +
-          process.env.MY_FUNCTION_ENV_VAR
+          process.env.MY_FUNCTION_ENV_VAR,
+        appName: getAdminApp().name
       },
       null,
       2
